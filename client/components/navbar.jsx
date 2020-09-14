@@ -29,9 +29,6 @@ export default class Header extends React.Component {
     }
 
     render() {
-      const logo = (window.screen.width < 700)
-        ?  <h1 className='header-logo img-fluid'> [ M  K ]</h1>
-        :  <h1 className='header-logo img-fluid'>  Mason Keiser</h1>
       let offset = -86;
       if (window.innerWidth < 768) {
         offset = -286;
@@ -46,7 +43,7 @@ export default class Header extends React.Component {
               <Nav className="" navbar>
                 <NavItem>
                   <Link activeClass="active"
-                    to="about"
+                    to="login"
                     spy={true}
                     smooth={true}
                     offset={offset}
@@ -58,7 +55,7 @@ export default class Header extends React.Component {
                 </NavItem>
                 <NavItem className="ml-md-5">
                   <Link activeClass="active"
-                    to="s"
+                    to="sign-up"
                     spy={true}
                     smooth={true}
                     offset={offset}
@@ -68,29 +65,26 @@ export default class Header extends React.Component {
                     Sign Up
                   </Link>
                 </NavItem>
-                <NavItem className="ml-md-5">
-                  <Link activeClass="active"
-                    to="https://masonkeiser.com/"
-                    spy={true}
-                    smooth={true}
+                <div className="ml-md-5">
+                  <a
+                    href="https://masonkeiser.com/"
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link"
                     onClick={this.handleToggle}>
                     Mason's Portfolio
-                  </Link>
-                </NavItem>
+                  </a>
+                </div>
               </Nav>
             </Collapse>
-            <NavbarBrand onClick={() => {
+            <NavbarBrand className="pointer decoration-none" onClick={() => {
                 scroll.scrollToTop();
                 if (this.state.isOpen) {
                   this.handleToggle();
                 }
-              }}
-                className="pointer decoration-none">
+            }}>
               Movie Game
-              </NavbarBrand>
+            </NavbarBrand>
           </Navbar>
         </Container>
         );

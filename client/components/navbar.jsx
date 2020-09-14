@@ -41,30 +41,24 @@ export default class Header extends React.Component {
               <NavbarToggler onClick={this.handleToggle} navbar="true" style={{border: 'none'}}/>
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="" navbar>
-                <NavItem>
-                  <Link activeClass="active"
-                    to="login"
-                    spy={true}
-                    smooth={true}
+                <div>
+                  <a
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link"
                     onClick={this.handleToggle, () => {this.props.setView('login', {})}}>
                       Login
-                  </Link>
-                </NavItem>
-                <NavItem className="ml-md-5">
-                  <Link activeClass="active"
-                    to="sign-up"
-                    spy={true}
-                    smooth={true}
+                  </a>
+                </div>
+                <div className="ml-md-5">
+                  <a
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link"
                     onClick={this.handleToggle, () => {this.props.setView('sign-up', {})}}>
                     Sign Up
-                  </Link>
-                </NavItem>
+                  </a>
+                </div>
                 <div className="ml-md-5">
                   <a
                     href="https://masonkeiser.com/"
@@ -84,7 +78,7 @@ export default class Header extends React.Component {
                 }
                 this.props.setView('home', {})
             }}>
-              Movie Game
+              Movie Match
             </NavbarBrand>
           </Navbar>
         </Container>

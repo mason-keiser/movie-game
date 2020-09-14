@@ -37,11 +37,11 @@ export default class App extends React.Component {
 
   render() {
     const view = (this.state.view.name === 'login')
-      ? <Login/>
+      ? <Login setView={this.setView}/>
       : (this.state.view.name === 'home')
         ? <Home setView={this.setView} view={this.state.view}/>
         : (this.state.view.name === 'sign-up')
-          ? <SignUp/>
+          ? <SignUp setView={this.setView}/>
           : null
     return (
         <div>

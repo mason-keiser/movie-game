@@ -1,3 +1,3 @@
 # movie-game
-A full-stack web application that allows you and another user to sort through a list of movies individually and movies that both users like are saved as a match for them to view after
+An application that allows two users to sort through a list of movies (provided via moviedb api) and like or dislike each movie. Which then saves the pair(s) of matches between the two users and compiles a list of the users matches for them to view.
 

@@ -49,7 +49,7 @@ export default class Header extends React.Component {
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link"
-                    onClick={this.handleToggle}>
+                    onClick={this.handleToggle, () => {this.props.setView('login', {})}}>
                       Login
                   </Link>
                 </NavItem>
@@ -61,7 +61,7 @@ export default class Header extends React.Component {
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link"
-                    onClick={this.handleToggle}>
+                    onClick={this.handleToggle, () => {this.props.setView('sign-up', {})}}>
                     Sign Up
                   </Link>
                 </NavItem>
@@ -82,6 +82,7 @@ export default class Header extends React.Component {
                 if (this.state.isOpen) {
                   this.handleToggle();
                 }
+                this.props.setView('home', {})
             }}>
               Movie Game
             </NavbarBrand>

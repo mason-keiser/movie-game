@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './navbar';
 import Home from './home';
+import Login from './login';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: '',
+        name: 'home',
         params: {}
       },
     };
@@ -23,7 +24,7 @@ export default class App extends React.Component {
         params: params
       }
     })
-  }
+  } 
 
   componentDidMount() {
     fetch('/api/health-check')
@@ -34,10 +35,15 @@ export default class App extends React.Component {
   }
 
   render() {
+    const view = (this.state.view.name === 'login')
+      ? <Login/>
+      : (this.state.view.name === 'home')
+        ? <Home setView={this.setView} view={this.state.view}/>
+        : null
     return (
         <div>
-          <Header/>
-          <Home/>
+          <Header setView={this.setView}/>
+          {view}
         </div>
     )
   }

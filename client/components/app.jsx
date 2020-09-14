@@ -39,7 +39,9 @@ export default class App extends React.Component {
       ? <Login/>
       : (this.state.view.name === 'home')
         ? <Home setView={this.setView} view={this.state.view}/>
-        : null
+        : (this.state.view.name === 'sign-up')
+          ? <Login/>
+          : null
     return (
         <div>
           <Header setView={this.setView}/>

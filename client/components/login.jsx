@@ -5,12 +5,10 @@ export default class Login extends React.Component {
         super(props);
         this.state = {
             email: '',
-            username: '',
             password: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleEmailChange =this.handleEmailChange.bind(this);
-        this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
@@ -19,7 +17,6 @@ export default class Login extends React.Component {
     event.preventDefault();
     const obj = {
       email: this.state.email,
-      username: this.state.username,
       password: this.state.password
     };
     callback(obj);
@@ -28,12 +25,6 @@ export default class Login extends React.Component {
   handleEmailChange() {
     this.setState({
       email: event.target.value
-    });
-  }
-
-  handleUsernameChange() {
-    this.setState({
-      username: event.target.value
     });
   }
 

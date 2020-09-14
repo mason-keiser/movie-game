@@ -19,7 +19,7 @@ body {
 
 .greeting{
     position: relative;
-    top: 25%;
+    top: 20%;
     left: 0;
     font-stretch: narrower;
 }
@@ -40,6 +40,27 @@ body {
     width: 100px;
 }
 
+form {
+    position: relative;
+    top: 35%;
+    left: 0;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-group > label {
+    margin-right: 7rem;
+}
+
+.form-group > input {
+    width: 200px;
+    align-self: center;
+}
+
 @media screen and (max-width: 500px) {
     .navbar-brand {
         margin-right: 5rem;
@@ -55,11 +76,9 @@ body {
       text-align: center;
     }
 
-    .entranceButtons {
-        top:55%;
-    }
 
-    .greeting{
-        top: 30%;
+
+    form{
+        top: 35%
     }
 }

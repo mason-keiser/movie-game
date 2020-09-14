@@ -16,6 +16,10 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
+ALTER TABLE ONLY public.user_info DROP CONSTRAINT user_info_pkey;
+ALTER TABLE public.user_info ALTER COLUMN user_id DROP DEFAULT;
+DROP SEQUENCE public.user_info_user_id_seq;
+DROP TABLE public.user_info;
 DROP EXTENSION plpgsql;
 DROP SCHEMA public;
 --
@@ -44,6 +48,73 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 --
 
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: user_info; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_info (
+    user_id integer NOT NULL,
+    user_name text NOT NULL,
+    user_email text NOT NULL,
+    user_password text NOT NULL
+);
+
+
+--
+-- Name: user_info_user_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_info_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_info_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_info_user_id_seq OWNED BY public.user_info.user_id;
+
+
+--
+-- Name: user_info user_id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_info ALTER COLUMN user_id SET DEFAULT nextval('public.user_info_user_id_seq'::regclass);
+
+
+--
+-- Data for Name: user_info; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.user_info (user_id, user_name, user_email, user_password) FROM stdin;
+1	yung Mas	masonksr5@gmail.com	masonk5
+\.
+
+
+--
+-- Name: user_info_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.user_info_user_id_seq', 1, false);
+
+
+--
+-- Name: user_info user_info_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_info
+    ADD CONSTRAINT user_info_pkey PRIMARY KEY (user_id);
 
 
 --

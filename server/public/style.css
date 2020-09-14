@@ -40,6 +40,11 @@ body {
     width: 100px;
 }
 
+form > div > button {
+    width: 100px;
+    align-self: center;
+}
+
 form {
     position: relative;
     top: 35%;
@@ -75,8 +80,6 @@ form {
       align-content: center;
       text-align: center;
     }
-
-
 
     form{
         top: 35%

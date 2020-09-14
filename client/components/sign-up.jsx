@@ -63,7 +63,7 @@ export default class SignUp extends React.Component {
                 <input type="text" name='password' id='password' onChange={this.handlePasswordChange}/>
               </div>
               <div className='form-group'>
-                <button type='submit' className='btn'>Sign Up</button>
+                <button type='submit' className='btn mt-2' style={{ borderRadius: '5%', border: '1px solid black'}}>Sign Up</button>
               </div>
             </form>
           </div>

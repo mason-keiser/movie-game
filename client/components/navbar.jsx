@@ -34,7 +34,7 @@ export default class Header extends React.Component {
         offset = -286;
       }
         return (
-          <Container fluid={true} className="py-3 shadow-lg bg-white sticky-top">
+          <Container fluid={true} className="py-3 bg-white sticky-top">
             <Navbar color="faded" light
               expand="md"
               className="row py-0 ">

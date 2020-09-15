@@ -49,7 +49,7 @@ export default class SignUp extends React.Component {
             <div className='greeting'>
               <h2>Welcome</h2>
             </div>
-            <form action="">
+            <form onSubmit={() => this.handleSubmit(this.props.signUp)}>
               <div className='form-group'>
                 <label htmlFor="email" className='pr-4'>Email: </label>
                 <input type="text" name='email' id='email' onChange={this.handleEmailChange}/>

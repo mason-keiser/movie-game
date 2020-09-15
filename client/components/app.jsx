@@ -16,6 +16,7 @@ export default class App extends React.Component {
       },
     };
     this.setView = this.setView.bind(this);
+    this.signUp = this.signUp.bind(this);
   }
 
   setView(names, params) {
@@ -26,6 +27,18 @@ export default class App extends React.Component {
       }
     })
   } 
+
+  signUp(orderInfo) {
+    fetch('/api/sign_up', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderInfo)
+    })
+    .then(response => {
+      response.json()
+      console.log(response)
+    });
+  }
 
   componentDidMount() {
     fetch('/api/health-check')
@@ -41,7 +54,7 @@ export default class App extends React.Component {
       : (this.state.view.name === 'home')
         ? <Home setView={this.setView} view={this.state.view}/>
         : (this.state.view.name === 'sign-up')
-          ? <SignUp setView={this.setView}/>
+          ? <SignUp signUp={this.signUp} setView={this.setView}/>
           : null
     return (
         <div>

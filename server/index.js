@@ -29,15 +29,15 @@ app.get('/api/user_info', (req, res, next) => {
       .catch(err => next(err));
 });
 
-app.post('/api/sign_up', (req, res, next) => {
+app.post('/api/signUp', (req, res, next) => {
   if (!req.body.user_name) {
-    return next(new ClientError('Missing required user_name field', 404))
+    return next(new ClientError('Missing required user_name field', 300))
   }
   if (!req.body.user_email) {
-    return next(new ClientError('Missing required user_email field', 404))
+    return next(new ClientError('Missing required user_email field', 300))
   }
   if (!req.body.user_password) {
-    return next(new ClientError('Missing required user_password field', 404))
+    return next(new ClientError('Missing required user_password field', 300))
   }
   const sql = `
   INSERT INTO "user_info" ("user_name", "user_email", "user_password")

@@ -37,6 +37,7 @@ export default class App extends React.Component {
     })
     .then(response => {
       response.json()
+      this.setView('main', {})
     });
   }
 

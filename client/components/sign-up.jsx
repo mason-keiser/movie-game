@@ -20,7 +20,7 @@ export default class SignUp extends React.Component {
       user_name: this.state.user_name,
       user_password: this.state.user_password
     };
-    this.props.login(obj)
+    callback(obj)
   }
 
   handleChange(event) {

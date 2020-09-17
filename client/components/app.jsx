@@ -36,7 +36,7 @@ export default class App extends React.Component {
       body: JSON.stringify(signupInfo)
     })
     .then(response => {
-      if (response.status === 400) {
+      if (response.status === 400 || response.status === 404) {
         const e = document.getElementById('user_email');
         e.style.borderColor = 'red';
       const p = document.getElementById('user_password');
@@ -58,7 +58,7 @@ export default class App extends React.Component {
       headers: { 'Content-Type': 'application/json' },
     })
     .then(response => {
-      if (response.status === 400){
+      if (response.status === 400 || response.status === 404){
         console.log('incorrect user_email / user_password combo')
         const e = document.getElementById('user_email')
           e.style.borderColor = 'red';

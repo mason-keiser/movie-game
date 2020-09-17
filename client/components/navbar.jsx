@@ -33,11 +33,12 @@ export default class Header extends React.Component {
       if (window.innerWidth < 768) {
         offset = -286;
       }
+      if (this.props.view.name === 'login' || this.props.view.name === 'sign-up' || this.props.view.name === 'home') {
         return (
-          <Container fluid={true} className="py-3 bg-white sticky-top">
+          <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
             <Navbar color="faded" light
               expand="md"
-              className="row py-0 ">
+              className="row py-0">
               <NavbarToggler onClick={this.handleToggle} navbar="true" style={{border: 'none'}}/>
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="" navbar>
@@ -83,5 +84,39 @@ export default class Header extends React.Component {
           </Navbar>
         </Container>
         );
+      } else {
+        return (
+          <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
+            <Navbar color="faded" light
+              expand="md"
+              className="row py-0 ">
+              <NavbarToggler onClick={this.handleToggle} navbar="true" style={{border: 'none'}}/>
+            <Collapse isOpen={this.state.isOpen} navbar>
+              <Nav className="" navbar>
+                <div className="ml-md-5">
+                  <a
+                    href="https://masonkeiser.com/"
+                    offset={offset}
+                    duration={1000}
+                    className="pointer px-0 nav-link mt-2"
+                    onClick={this.handleToggle}>
+                    Mason's Portfolio
+                  </a>
+                </div>
+              </Nav>
+            </Collapse>
+            <NavbarBrand className="pointer decoration-none" onClick={() => {
+                scroll.scrollToTop();
+                if (this.state.isOpen) {
+                  this.handleToggle();
+                }
+                this.props.setView('home', {})
+            }}>
+              Movie Match
+            </NavbarBrand>
+          </Navbar>
+        </Container>
+        )
+      }
     }
 }

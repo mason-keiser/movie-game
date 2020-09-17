@@ -36,8 +36,17 @@ export default class App extends React.Component {
       body: JSON.stringify(signupInfo)
     })
     .then(response => {
-      response.json()
-      this.setView('main', {})
+      if (response.status === 400) {
+        const e = document.getElementById('user_email');
+        e.style.borderColor = 'red';
+      const p = document.getElementById('user_password');
+        p.style.borderColor = 'red';
+      const u = document.getElementById('user_name');
+        u.style.borderColor = 'red'
+      } else {
+      response.json();
+      this.setView('main', {});
+      }
     });
   }
 
@@ -77,10 +86,12 @@ export default class App extends React.Component {
         ? <Home setView={this.setView} view={this.state.view}/>
         : (this.state.view.name === 'sign-up')
           ? <SignUp signUp={this.signUp} setView={this.setView}/>
-          : null
+          : (this.state.view.name === 'main')
+            ? null
+            : null
     return (
         <div>
-          <Header setView={this.setView}/>
+          <Header view={this.state.view} setView={this.setView}/>
           {view}
         </div>
     )

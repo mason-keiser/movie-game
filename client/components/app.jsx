@@ -50,6 +50,10 @@ export default class App extends React.Component {
     .then(response => {
       if (response.status === 400){
         console.log('incorrect user_email / user_password combo')
+        const e = document.getElementById('user_email')
+          e.style.borderColor = 'red';
+        const p = document.getElementById('user_password')
+          p.style.borderColor = 'red';
       } else {
       response.json();
       this.setView('main', {})

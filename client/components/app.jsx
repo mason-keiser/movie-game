@@ -49,7 +49,7 @@ export default class App extends React.Component {
     })
     .then(response => {
       if (response.status === 400){
-        console.log(response)
+        console.log('incorrect user_email / user_password combo')
       } else {
       response.json();
       this.setView('main', {})

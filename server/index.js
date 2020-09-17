@@ -70,7 +70,7 @@ app.get('/api/login', (req, res, next) => {
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        return res.status(200).json({ message: `No user information contain: ${email} or ${password}` });
+        return res.status(200).json({ message: `No user information contains: ${email} or ${password}` });
       } else {
         return res.status(200).json(result.rows);
       }

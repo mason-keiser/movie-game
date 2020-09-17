@@ -17,6 +17,7 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.signUp = this.signUp.bind(this);
+    this.login = this.login.bind(this);
   }
 
   setView(names, params) {
@@ -28,16 +29,32 @@ export default class App extends React.Component {
     })
   } 
 
-  signUp(orderInfo) {
+  signUp(signupInfo) {
     fetch('/api/signUp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderInfo)
+      body: JSON.stringify(signupInfo)
     })
     .then(response => {
       response.json()
-      console.log(response)
     });
+  }
+
+  login(loginInfo) {
+    const email = loginInfo.user_email
+    const password = loginInfo.user_password
+    fetch('/api/login/' + email +'/' + password , {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then(response => {
+      if (response.status === 400){
+        console.log(response)
+      } else {
+      response.json();
+      this.setView('main', {})
+      }
+    })
   }
 
   componentDidMount() {
@@ -50,7 +67,7 @@ export default class App extends React.Component {
 
   render() {
     const view = (this.state.view.name === 'login')
-      ? <Login setView={this.setView}/>
+      ? <Login setView={this.setView} login={this.login}/>
       : (this.state.view.name === 'home')
         ? <Home setView={this.setView} view={this.state.view}/>
         : (this.state.view.name === 'sign-up')

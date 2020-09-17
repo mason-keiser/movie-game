@@ -36,7 +36,7 @@ export default class Login extends React.Component {
             <div className='greeting'>
               <h2>Welcome Back</h2>
             </div>
-            <form>
+            <form onSubmit={() => this.handleSubmit(this.props.login)}>
               <div className='form-group'>
                 <label htmlFor="email" className='pr-4'>Email: </label>
                 <input type="text" name='email' id='user_email' onChange={this.handleChange}/>

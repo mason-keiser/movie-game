@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class SignUp extends React.Component {
       user_name: this.state.user_name,
       user_password: this.state.user_password
     };
-    callback(obj)
+    this.props.login(obj)
   }
 
   handleChange(event) {

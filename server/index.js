@@ -58,19 +58,19 @@ app.post('/api/signUp', (req, res, next) => {
 
 //  SEARCH DATABASE FOR EXISTING USER_EMAIL AND USER_PASSWORD API GET REQUEST
 
-app.get('/api/login', (req, res, next) => {
-  const email = req.body.user_email;
-  const password = req.body.user_password;
+app.get('/api/login/:user_email/:user_password', (req, res, next) => {
+  const email = req.params.user_email;
+  const password = req.params.user_password;
   const sql = `
   SELECT * FROM "user_info"
   WHERE "user_email" = $1 
   AND "user_password" = $2;
   `
-  const params = [req.body.user_email, req.body.user_password]
+  const params = [req.params.user_email, req.params.user_password]
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
-        return res.status(200).json({ message: `No user information contains: ${email} or ${password}` });
+        return res.status(400).json({ message: `No user information contains: ${email} or ${password}` });
       } else {
         return res.status(200).json(result.rows);
       }

@@ -102,6 +102,7 @@ COPY public.user_info (user_id, user_name, user_email, user_password) FROM stdin
 3	yung Mas	masonksr5@gmail.com	masonk5
 4	mas	masonk#gmail.com	124
 5	2cool	thisemail@aol.com	password
+17	user name	email	bestPassword
 \.
 
 
@@ -109,7 +110,7 @@ COPY public.user_info (user_id, user_name, user_email, user_password) FROM stdin
 -- Name: user_info_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.user_info_user_id_seq', 5, true);
+SELECT pg_catalog.setval('public.user_info_user_id_seq', 17, true);
 
 
 --

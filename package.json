@@ -116,5 +116,16 @@
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.10.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mason-keiser/movie-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mason-keiser/movie-game/issues"
+  },
+  "homepage": "https://github.com/mason-keiser/movie-game#readme"
 }

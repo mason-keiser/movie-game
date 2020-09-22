@@ -70,6 +70,16 @@ export default class Header extends React.Component {
                     Mason's Portfolio
                   </a>
                 </div>
+                <div className="ml-md-5">
+                  <a
+                    href="https://andrewsong.org"
+                    offset={offset}
+                    duration={1000}
+                    className="pointer px-0 nav-link"
+                    onClick={this.handleToggle}>
+                    Andrew's Portfolio
+                  </a>
+                </div>
               </Nav>
             </Collapse>
             <NavbarBrand className="pointer decoration-none" onClick={() => {
@@ -93,6 +103,15 @@ export default class Header extends React.Component {
               <NavbarToggler onClick={this.handleToggle} navbar="true" style={{border: 'none'}}/>
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="" navbar>
+              <div>
+                  <a
+                    offset={offset}
+                    duration={1000}
+                    className="pointer px-0 nav-link mt-2"
+                    onClick={this.handleToggle, () => {this.props.setView('home', {})}}>
+                     Start Game
+                  </a>
+                </div>
                 <div className="ml-md-5">
                   <a
                     href="https://masonkeiser.com/"
@@ -101,6 +120,16 @@ export default class Header extends React.Component {
                     className="pointer px-0 nav-link mt-2"
                     onClick={this.handleToggle}>
                     Mason's Portfolio
+                  </a>
+                </div>
+                <div className="ml-md-5">
+                  <a
+                    href="https://andrewsong.org/"
+                    offset={offset}
+                    duration={1000}
+                    className="pointer px-0 nav-link mt-2"
+                    onClick={this.handleToggle}>
+                    Andrew's Portfolio
                   </a>
                 </div>
               </Nav>

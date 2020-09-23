@@ -3,6 +3,7 @@ import Header from './navbar';
 import Home from './home';
 import Login from './login';
 import SignUp from './sign-up';
+import MainHome from './main_home';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ export default class App extends React.Component {
       message: null,
       isLoading: true,
       view: {
-        name: 'home',
+        name: 'main',
         params: {}
       },
     };
@@ -87,7 +88,7 @@ export default class App extends React.Component {
         : (this.state.view.name === 'sign-up')
           ? <SignUp signUp={this.signUp} setView={this.setView}/>
           : (this.state.view.name === 'main')
-            ? null
+            ? <MainHome setView={this.setView}/>
             : null
     return (
         <div>

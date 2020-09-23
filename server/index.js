@@ -1,5 +1,6 @@
 require('dotenv/config');
 const express = require('express');
+const fetch = require('node-fetch');
 
 const db = require('./database');
 const ClientError = require('./client-error');
@@ -14,7 +15,7 @@ app.use(sessionMiddleware);
 app.use(express.json());
 
 app.get('/api/health-check', (req, res, next) => {
-  db.query(`select 'successfully connected' as "message"`)
+  db.query('select \'successfully connected\' as "message"')
     .then(result => res.json(result.rows[0]))
     .catch(err => next(err));
 });
@@ -22,39 +23,39 @@ app.get('/api/health-check', (req, res, next) => {
 //  SEARCH THROUGH USER_INFO TABLE (RETURNS ALL VALUES)
 
 app.get('/api/user_info', (req, res, next) => {
-    const sql = `
+  const sql = `
     SELECT *
     FROM "user_info"
     `;
-    db.query(sql)
-      .then(result => res.json(result.rows))
-      .catch(err => next(err));
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
 });
 
-//  SIGN UP API POST REQUEST THAT ADDS USER INFO TO DB 
+//  SIGN UP API POST REQUEST THAT ADDS USER INFO TO DB
 
 app.post('/api/signUp', (req, res, next) => {
   if (!req.body.user_name) {
-    return next(new ClientError('Missing required user_name field', 400))
+    return next(new ClientError('Missing required user_name field', 400));
   }
   if (!req.body.user_email) {
-    return next(new ClientError('Missing required user_email field', 400))
+    return next(new ClientError('Missing required user_email field', 400));
   }
   if (!req.body.user_password) {
-    return next(new ClientError('Missing required user_password field', 400))
+    return next(new ClientError('Missing required user_password field', 400));
   }
   const sql = `
   INSERT INTO "user_info" ("user_name", "user_email", "user_password")
   VALUES                  ($1, $2, $3)
   RETURNING *;
-  `
+  `;
   const params = [req.body.user_name, req.body.user_email, req.body.user_password];
   db.query(sql, params)
     .then(result => {
-      const row = result.rows[0]
+      const row = result.rows[0];
       res.status(201).json(row);
-    })
-})
+    });
+});
 
 //  SEARCH DATABASE FOR EXISTING USER_EMAIL AND USER_PASSWORD API GET REQUEST
 
@@ -65,8 +66,8 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
   SELECT * FROM "user_info"
   WHERE "user_email" = $1 
   AND "user_password" = $2;
-  `
-  const params = [req.params.user_email, req.params.user_password]
+  `;
+  const params = [req.params.user_email, req.params.user_password];
   db.query(sql, params)
     .then(result => {
       if (!result.rows[0]) {
@@ -79,7 +80,35 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
       console.error(err);
       res.status(500).json({ error: 'An unexpected error occurred.' });
     });
-})
+});
+
+// Get Movies
+
+app.get('/api/movies', (req, res, next) => {
+  const movieDbMasterApiKey = process.env.movieDbMasterAPI_KEYSONG;
+  const movieLang = 'en';
+  const movieSortPopularity = 'popularity.desc';
+  const movieSortYear = '2010';
+  const movieGenre = 'action';
+  const movieDbUrl = `
+  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}&sort_by=${movieSortPopularity}&primary_release_date.gte=${movieSortYear}&with_genres=${movieGenre}
+  `;
+  fetch(movieDbUrl)
+    .then(res => res.json())
+    .then(results => {
+      const parsedMovies = results.results.map(obj => {
+        return {
+          title: obj.original_title,
+          releaseDate: obj.release_date
+        };
+      });
+
+      return res.status(200).json(parsedMovies);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+});
 
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));

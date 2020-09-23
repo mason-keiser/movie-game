@@ -86,24 +86,24 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
 
 app.get('/api/movies', (req, res, next) => {
   const movieDbMasterApiKey = process.env.movieDbMasterAPI_KEYSONG;
-  const movieLang = 'en-US';
+  const movieLang = 'en';
   const movieSortPopularity = 'popularity.desc';
   const movieSortYear = '2010';
+  const movieGenre = 'action';
   const movieDbUrl = `
-  https://api.themoviedb.org/3/movie/550?api_key=${movieDbMasterApiKey}&language=${movieLang}&sort_by=${movieSortPopularity}&primary_release_date.gte=${movieSortYear}
+  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}&sort_by=${movieSortPopularity}&primary_release_date.gte=${movieSortYear}&with_genres=${movieGenre}
   `;
   fetch(movieDbUrl)
     .then(res => res.json())
     .then(results => {
-      // const parsedMovies = results.results.map(obj => {
-      //   return {
-      //     title: obj.original_title,
-      //     releaseDate: obj.release_date,
-      //   }
-      // })
-      // console.log('results:', results._embedded);
+      const parsedMovies = results.results.map(obj => {
+        return {
+          title: obj.original_title,
+          releaseDate: obj.release_date
+        };
+      });
 
-      return res.status(200).json(results);
+      return res.status(200).json(parsedMovies);
     })
     .catch(err => {
       console.error(err);

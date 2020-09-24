@@ -15,7 +15,7 @@ export default class App extends React.Component {
       view: {
         name: 'game-prep',
         params: {}
-      },
+      }
     };
     this.setView = this.setView.bind(this);
     this.signUp = this.signUp.bind(this);
@@ -28,7 +28,7 @@ export default class App extends React.Component {
         name: names,
         params: params
       }
-    })
+    });
   }
 
   signUp(signupInfo) {
@@ -44,7 +44,7 @@ export default class App extends React.Component {
           const p = document.getElementById('user_password');
           p.style.borderColor = 'red';
           const u = document.getElementById('user_name');
-          u.style.borderColor = 'red'
+          u.style.borderColor = 'red';
         } else {
           response.json();
           this.setView('main', {});
@@ -53,24 +53,24 @@ export default class App extends React.Component {
   }
 
   login(loginInfo) {
-    const email = loginInfo.user_email
-    const password = loginInfo.user_password
+    const email = loginInfo.user_email;
+    const password = loginInfo.user_password;
     fetch('/api/login/' + email + '/' + password, {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' }
     })
       .then(response => {
         if (response.status === 400 || response.status === 404) {
-          console.log('incorrect user_email / user_password combo')
-          const e = document.getElementById('user_email')
+          console.log('incorrect user_email / user_password combo');
+          const e = document.getElementById('user_email');
           e.style.borderColor = 'red';
-          const p = document.getElementById('user_password')
+          const p = document.getElementById('user_password');
           p.style.borderColor = 'red';
         } else {
           response.json();
-          this.setView('main', {})
+          this.setView('main', {});
         }
-      })
+      });
   }
 
   componentDidMount() {
@@ -98,6 +98,6 @@ export default class App extends React.Component {
         <Header view={this.state.view} setView={this.setView} />
         {view}
       </div>
-    )
+    );
   }
 }

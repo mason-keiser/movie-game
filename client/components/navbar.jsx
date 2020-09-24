@@ -139,7 +139,7 @@ export default class Header extends React.Component {
                 if (this.state.isOpen) {
                   this.handleToggle();
                 }
-                this.props.setView('home', {})
+                this.props.setView('main', {})
             }}>
               Movie Match
             </NavbarBrand>
@@ -191,7 +191,7 @@ export default class Header extends React.Component {
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('home', {})
+              this.props.setView('main', {})
           }}>
             Movie Match
           </NavbarBrand>

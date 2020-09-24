@@ -84,7 +84,7 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
 
 // Get Movies
 
-app.get('/api/movies', (req, res, next) => {
+app.get('/api/movies/:genre', (req, res, next) => {
   const movieDbMasterApiKey = process.env.movieDbMasterAPI_KEYSONG;
   const movieLang = 'en';
   const movieDbUrl = `

@@ -87,11 +87,8 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
 app.get('/api/movies', (req, res, next) => {
   const movieDbMasterApiKey = process.env.movieDbMasterAPI_KEYSONG;
   const movieLang = 'en';
-  const movieSortPopularity = 'popularity.desc';
-  const movieSortYear = '2010';
-  const movieGenre = 'action';
   const movieDbUrl = `
-  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}&sort_by=${movieSortPopularity}&primary_release_date.gte=${movieSortYear}&with_genres=${movieGenre}
+  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}
   `;
   fetch(movieDbUrl)
     .then(res => res.json())
@@ -99,10 +96,12 @@ app.get('/api/movies', (req, res, next) => {
       const parsedMovies = results.results.map(obj => {
         return {
           title: obj.original_title,
-          releaseDate: obj.release_date
+          releaseDate: obj.release_date,
+          poster: obj.poster_path,
+          overview: obj.overview,
+          genreArray: obj.genre_ids
         };
       });
-
       return res.status(200).json(parsedMovies);
     })
     .catch(err => {

@@ -133,11 +133,11 @@ export default class Header extends React.Component {
               </Nav>
             </Collapse>
             <NavbarBrand className="pointer decoration-none" onClick={() => {
-              scroll.scrollToTop();
-              if (this.state.isOpen) {
-                this.handleToggle();
-              }
-              this.props.setView('home', {});
+                scroll.scrollToTop();
+                if (this.state.isOpen) {
+                  this.handleToggle();
+                }
+                this.props.setView('main', {})
             }}>
               Movie Match
             </NavbarBrand>
@@ -189,14 +189,15 @@ export default class Header extends React.Component {
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('home', {});
-            }}>
-              Movie Match
-            </NavbarBrand>
-            <div className='mr-4 mt-1 fa fa-envelope' style={{ position: 'absolute', right: '0' }}></div>
-          </Navbar>
-        </Container>
-      );
+              this.props.setView('main', {})
+          }}>
+            Movie Match
+          </NavbarBrand>
+          <div className='mr-4 mt-1 fa fa-envelope' style={{ position: 'absolute', right: '0',}}></div>
+        </Navbar>
+      </Container>
+        )
+      }
     }
   }
 }

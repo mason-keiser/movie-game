@@ -144,7 +144,7 @@ export default class Header extends React.Component {
           </Navbar>
         </Container>
       );
-    } else if (this.props.view.name === 'game' || this.props.view.name === 'matches_page') {
+    } else if (this.props.view.name === 'game' || this.props.view.name === 'matches_page' || this.props.view.name === 'game-prep') {
       return (
         <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
           <Navbar color="faded" light

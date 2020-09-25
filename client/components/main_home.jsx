@@ -20,17 +20,31 @@ export default class MainHome extends React.Component {
         boxShadow: '0px 3px 4px grey',
         borderRadius: '5%'
       }
-      : {
-        position: 'fixed',
-        bottom: '40px',
-        left: '42%',
-        width: '150px',
-        height: '50px',
-        backgroundColor: 'white',
-        border: 'none',
-        boxShadow: '0px 3px 4px grey',
-        borderRadius: '5%'
-      };
+      : (window.screen.width < 800)
+        ? {
+          position: 'fixed',
+          bottom: '40px',
+          left: '42%',
+          width: '150px',
+          height: '50px',
+          backgroundColor: 'white',
+          border: 'none',
+          boxShadow: '0px 3px 4px grey',
+          borderRadius: '5%'
+          }
+        : (window.screen.width < 1500)
+          ? {
+            position: 'fixed',
+            bottom: '40px',
+            left: '45%',
+            width: '150px',
+            height: '50px',
+            backgroundColor: 'white',
+            border: 'none',
+            boxShadow: '0px 3px 4px grey',
+            borderRadius: '5%'
+          }
+          : null
     return (
       <div className="homePage" style={{ overflowY: 'hidden', justifyContent: 'left' }}>
         <div className='pt-4' style={{ fontSize: '1.5rem' }}>My Likes: </div>

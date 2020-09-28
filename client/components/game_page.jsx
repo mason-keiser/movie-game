@@ -9,6 +9,10 @@ export default class GamePage extends React.Component {
   }
 
   render() {
-    return (null);
+    const movies = this.props.movies;
+    console.log('movies:', movies);
+    return (
+      <div>hello</div>
+    );
   }
 }

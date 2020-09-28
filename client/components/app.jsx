@@ -5,6 +5,7 @@ import Login from './login';
 import SignUp from './sign-up';
 import MainHome from './main_home';
 import GamePrep from './game_prep';
+import GamePage from './game_page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -83,17 +84,19 @@ export default class App extends React.Component {
   }
 
   render() {
-    const view = (this.state.view.name === 'game-prep')
-      ? <GamePrep setView={this.setView} view={this.state.view} />
-      : (this.state.view.name === 'login')
-        ? <Login setView={this.setView} login={this.login} />
-        : (this.state.view.name === 'home')
-          ? <Home setView={this.setView} view={this.state.view} />
-          : (this.state.view.name === 'sign-up')
-            ? <SignUp signUp={this.signUp} setView={this.setView} />
-            : (this.state.view.name === 'main')
-              ? <MainHome setView={this.setView} />
-              : null;
+    const view = (this.state.view.name === 'game-page')
+      ? <GamePage setView={this.setView} view={this.state.view} />
+      : (this.state.view.name === 'game-prep')
+        ? <GamePrep setView={this.setView} view={this.state.view} />
+        : (this.state.view.name === 'login')
+          ? <Login setView={this.setView} login={this.login} />
+          : (this.state.view.name === 'home')
+            ? <Home setView={this.setView} view={this.state.view} />
+            : (this.state.view.name === 'sign-up')
+              ? <SignUp signUp={this.signUp} setView={this.setView} />
+              : (this.state.view.name === 'main')
+                ? <MainHome setView={this.setView} />
+                : null;
     return (
       <div>
         <Header view={this.state.view} setView={this.setView} />

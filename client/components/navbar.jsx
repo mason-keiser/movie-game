@@ -133,18 +133,18 @@ export default class Header extends React.Component {
               </Nav>
             </Collapse>
             <NavbarBrand className="pointer decoration-none" onClick={() => {
-                scroll.scrollToTop();
-                if (this.state.isOpen) {
-                  this.handleToggle();
-                }
-                this.props.setView('main', {})
+              scroll.scrollToTop();
+              if (this.state.isOpen) {
+                this.handleToggle();
+              }
+              this.props.setView('main', {});
             }}>
               Movie Match
             </NavbarBrand>
           </Navbar>
         </Container>
       );
-    } else if (this.props.view.name === 'game' || this.props.view.name === 'matches_page' || this.props.view.name === 'game-prep') {
+    } else if (this.props.view.name === 'game' || this.props.view.name === 'matches_page' || this.props.view.name === 'game-prep' || this.props.view.name === 'game-page') {
       return (
         <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
           <Navbar color="faded" light
@@ -189,14 +189,14 @@ export default class Header extends React.Component {
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('main', {})
-          }}>
-            Movie Match
-          </NavbarBrand>
-          <div className='mr-4 mt-1 fa fa-envelope' style={{ position: 'absolute', right: '0',}}></div>
-        </Navbar>
-      </Container>
-        )
-      }
+              this.props.setView('main', {});
+            }}>
+              Movie Match
+            </NavbarBrand>
+            <div className='mr-4 mt-1 fa fa-envelope' style={{ position: 'absolute', right: '0' }}></div>
+          </Navbar>
+        </Container>
+      );
     }
   }
+}

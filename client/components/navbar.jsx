@@ -31,6 +31,15 @@ export default class Header extends React.Component {
     if (window.innerWidth < 768) {
       offset = -286;
     }
+    const navBrand = (window.screen.width < 600)
+      ? {
+        marginRight: '5rem'
+      }
+      : (window.screen.width < 600 && this.props.view.name === 'game-prep')
+        ? {
+          marginRight: '2rem'
+        }
+        : null
     if (this.props.view.name === 'login' || this.props.view.name === 'sign-up' || this.props.view.name === 'home') {
       return (
         <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
@@ -80,7 +89,7 @@ export default class Header extends React.Component {
                 </div>
               </Nav>
             </Collapse>
-            <NavbarBrand className="pointer decoration-none" onClick={() => {
+            <NavbarBrand className="pointer decoration-none" style={navBrand}onClick={() => {
               scroll.scrollToTop();
               if (this.state.isOpen) {
                 this.handleToggle();
@@ -132,12 +141,12 @@ export default class Header extends React.Component {
                 </div>
               </Nav>
             </Collapse>
-            <NavbarBrand className="pointer decoration-none" onClick={() => {
-              scroll.scrollToTop();
-              if (this.state.isOpen) {
-                this.handleToggle();
-              }
-              this.props.setView('main', {});
+            <NavbarBrand className="pointer decoration-none" style={navBrand} onClick={() => {
+                scroll.scrollToTop();
+                if (this.state.isOpen) {
+                  this.handleToggle();
+                }
+                this.props.setView('main', {})
             }}>
               Movie Match
             </NavbarBrand>
@@ -158,8 +167,8 @@ export default class Header extends React.Component {
                     offset={offset}
                     duration={1000}
                     className="pointer px-0 nav-link mt-2"
-                    onClick={this.handleToggle, () => { this.props.setView('home', {}); }}>
-                    Start Game
+                    onClick={this.handleToggle, () => { this.props.setView('main', {}); }}>
+                    Home Page
                   </a>
                 </div>
                 <div className="ml-md-5">
@@ -184,19 +193,18 @@ export default class Header extends React.Component {
                 </div>
               </Nav>
             </Collapse>
-            <NavbarBrand className="pointer decoration-none" onClick={() => {
+            <NavbarBrand className="pointer decoration-none fas fa-film m-0" style={{ position: 'absolute', right: '25px', top: '0'}} onClick={() => {
               scroll.scrollToTop();
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('main', {});
-            }}>
-              Movie Match
-            </NavbarBrand>
-            <div className='mr-4 mt-1 fa fa-envelope' style={{ position: 'absolute', right: '0' }}></div>
-          </Navbar>
-        </Container>
-      );
+              this.props.setView('main', {})
+          }}>
+          </NavbarBrand>
+        </Navbar>
+      </Container>
+        )
+      }
     }
   }
 }

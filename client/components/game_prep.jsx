@@ -16,7 +16,7 @@ export default class GamePrep extends React.Component {
       .then(movies => {
         this.setState({ movies });
         console.log('fetch movies:', movies);
-        this.props.setView('game-page', {});
+        this.props.setView('game-page', {movies : this.state.movies});
       })
       .catch(err => console.error(err));
   }

@@ -1,22 +1,25 @@
 import React from 'react';
+import GamePage from './game_page';
 
 export default class GamePrep extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            movies: []
-        };
-        this.getMovies = this.getMovies.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: []
+    };
+    this.getMovies = this.getMovies.bind(this);
+  }
 
-    getMovies(genre) {
-        fetch(`/api/movies/${genre}`)
-            .then(res => res.json())
-            .then(movies => {
-                this.setState({ movies });
-            })
-            .catch(err => console.error(err));
-    }
+  getMovies(genre) {
+    fetch(`/api/movies/${genre}`)
+      .then(res => res.json())
+      .then(movies => {
+        this.setState({ movies });
+        console.log('fetch movies:', movies);
+        this.props.setView('game-page', {});
+      })
+      .catch(err => console.error(err));
+  }
 
     render() {
         const buttonStyle = (window.screen.width < 600)

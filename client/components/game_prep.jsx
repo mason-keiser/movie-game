@@ -1,47 +1,46 @@
 import React from 'react';
-import GamePage from './game_page';
 
 export default class GamePrep extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movies: []
-    };
-    this.getMovies = this.getMovies.bind(this);
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            movies: []
+        };
+        this.getMovies = this.getMovies.bind(this);
+    }
 
-  getMovies(genre) {
-    fetch(`/api/movies/${genre}`)
-      .then(res => res.json())
-      .then(movies => {
-        this.setState({ movies });
-        console.log('fetch movies:', movies);
-        this.props.setView('game-page', {});
-      })
-      .catch(err => console.error(err));
-  }
+    getMovies(genre) {
+        fetch(`/api/movies/${genre}`)
+            .then(res => res.json())
+            .then(movies => {
+                this.setState({ movies });
+                console.log('fetch movies:', movies);
+                this.props.setView('game-page', {});
+            })
+            .catch(err => console.error(err));
+    }
 
     render() {
         const buttonStyle = (window.screen.width < 600)
-        ? {
-          width: '250px',
-          height: '40px',
-          backgroundColor: 'white',
-          border: 'none',
-          boxShadow: '0px 3px 4px grey',
-          borderRadius: '5%'
-        }
-        : {
-          width: '250px',
-          height: '50px',
-          backgroundColor: 'white',
-          border: 'none',
-          boxShadow: '0px 3px 4px grey',
-          borderRadius: '5%'
-        };
+            ? {
+                width: '250px',
+                height: '40px',
+                backgroundColor: 'white',
+                border: 'none',
+                boxShadow: '0px 3px 4px grey',
+                borderRadius: '5%'
+            }
+            : {
+                width: '250px',
+                height: '50px',
+                backgroundColor: 'white',
+                border: 'none',
+                boxShadow: '0px 3px 4px grey',
+                borderRadius: '5%'
+            };
         return (
             <div className="homePage pt-3">
-                <p className="d-flex justify-content-center pt-3 " style={{fontSize: '1.3rem'}}>Select a Genre to Choose From!</p>
+                <p className="d-flex justify-content-center pt-3 " style={{ fontSize: '1.3rem' }}>Select a Genre to Choose From!</p>
                 <div className="genreContainer">
                     <div className="row d-flex justify-content-center">
                         <button className="genre mt-3 mb-3" style={buttonStyle} onClick={() => this.getMovies(28)}>Action & Adventure</button>

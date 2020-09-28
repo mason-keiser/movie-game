@@ -89,7 +89,7 @@ export default class Header extends React.Component {
                 </div>
               </Nav>
             </Collapse>
-            <NavbarBrand className="pointer decoration-none" style={navBrand}onClick={() => {
+            <NavbarBrand className="pointer decoration-none" style={navBrand} onClick={() => {
               scroll.scrollToTop();
               if (this.state.isOpen) {
                 this.handleToggle();
@@ -142,11 +142,11 @@ export default class Header extends React.Component {
               </Nav>
             </Collapse>
             <NavbarBrand className="pointer decoration-none" style={navBrand} onClick={() => {
-                scroll.scrollToTop();
-                if (this.state.isOpen) {
-                  this.handleToggle();
-                }
-                this.props.setView('main', {})
+              scroll.scrollToTop();
+              if (this.state.isOpen) {
+                this.handleToggle();
+              }
+              this.props.setView('main', {})
             }}>
               Movie Match
             </NavbarBrand>
@@ -193,18 +193,17 @@ export default class Header extends React.Component {
                 </div>
               </Nav>
             </Collapse>
-            <NavbarBrand className="pointer decoration-none fas fa-film m-0" style={{ position: 'absolute', right: '25px', top: '0'}} onClick={() => {
+            <NavbarBrand className="pointer decoration-none fas fa-film m-0" style={{ position: 'absolute', right: '25px', top: '0' }} onClick={() => {
               scroll.scrollToTop();
               if (this.state.isOpen) {
                 this.handleToggle();
               }
               this.props.setView('main', {})
-          }}>
-          </NavbarBrand>
-        </Navbar>
-      </Container>
-        )
-      }
+            }}>
+            </NavbarBrand>
+          </Navbar>
+        </Container>
+      )
     }
   }
 }

@@ -15,7 +15,6 @@ export default class App extends React.Component {
       isLoading: true,
       view: {
         name: 'home',
-
         params: {}
       }
     };

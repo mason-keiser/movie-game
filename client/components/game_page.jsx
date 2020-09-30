@@ -1,18 +1,22 @@
 import React from 'react';
 
 export default class GamePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
-
   render() {
-    const movies = this.props.movies;
-    console.log('movies:', movies);
+    const movieObj = this.props.view.params.movies.map((obj, idx) => {
+      return (
+        <div key={idx} className="movieContainer">
+          <img
+            className="col-12"
+            src={`https://image.tmdb.org/t/p/w500/${obj.poster}`}
+            alt={`${obj.title} poster`}
+          />
+        </div>
+      );
+    });
     return (
-      <div>hello</div>
+      <div className="container col-12">
+        {movieObj}
+      </div>
     );
   }
 }

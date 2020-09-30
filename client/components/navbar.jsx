@@ -39,7 +39,7 @@ export default class Header extends React.Component {
         ? {
           marginRight: '2rem'
         }
-        : null
+        : null;
     if (this.props.view.name === 'login' || this.props.view.name === 'sign-up' || this.props.view.name === 'home') {
       return (
         <Container fluid={true} className="py-3 bg-white sticky-top shadow-sm">
@@ -146,7 +146,7 @@ export default class Header extends React.Component {
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('main', {})
+              this.props.setView('main', {});
             }}>
               Movie Match
             </NavbarBrand>
@@ -198,12 +198,12 @@ export default class Header extends React.Component {
               if (this.state.isOpen) {
                 this.handleToggle();
               }
-              this.props.setView('main', {})
+              this.props.setView('main', {});
             }}>
             </NavbarBrand>
           </Navbar>
         </Container>
-      )
+      );
     }
   }
 }

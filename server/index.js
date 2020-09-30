@@ -87,8 +87,9 @@ app.get('/api/login/:user_email/:user_password', (req, res, next) => {
 app.get('/api/movies/:genre', (req, res, next) => {
   const movieDbMasterApiKey = process.env.movieDbMasterAPI_KEYSONG;
   const movieLang = 'en';
+  const movieId = req.params.genre;
   const movieDbUrl = `
-  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}
+  https://api.themoviedb.org/3/discover/movie?api_key=${movieDbMasterApiKey}&with_original_language=${movieLang}&with_genres=${movieId}
   `;
   fetch(movieDbUrl)
     .then(res => res.json())

@@ -16,8 +16,7 @@ export default class App extends React.Component {
       view: {
         name: 'home',
         params: {}
-      },
-      movies: []
+      }
     };
     this.setView = this.setView.bind(this);
     this.signUp = this.signUp.bind(this);
@@ -85,9 +84,9 @@ export default class App extends React.Component {
 
   render() {
     const view = (this.state.view.name === 'game-page')
-      ? <GamePage setView={this.setView} view={this.state.view} movies={this.state.movies} />
+      ? <GamePage setView={this.setView} view={this.state.view} />
       : (this.state.view.name === 'game-prep')
-        ? <GamePrep setView={this.setView} view={this.state.view} movies={this.state.movies} />
+        ? <GamePrep setView={this.setView} view={this.state.view} />
         : (this.state.view.name === 'login')
           ? <Login setView={this.setView} login={this.login} />
           : (this.state.view.name === 'home')
